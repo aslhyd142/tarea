@@ -1,0 +1,25 @@
+//piezas de react-router-dom Routes/route define el mapa de rutas
+//Navigate sirve para redirigir de una url a otra
+import { Navigate, Route, Routes} from 'react-router-dom';
+//Guardian que protege las rutas privadas del dashboard 
+//import ProtectedRoute from './Routes/ProtectedRoute';
+//esqueleto visual (sidebar + topbar)que comparten las paginas del dashboard 
+//import ProtectedRoute from './Routes/ProtectedRoute';
+
+//paginas publicas y privadas de la aplicacion
+import LoginPage from './page/Loginpage'
+function App() {
+  return (
+    <Routes>
+      {/* Ruta raiz: manda directo al login (si ya hay sesion,
+      ProtectedRoute se encargara de dejarlo pasar al dashboard)*/}
+      <Route path="/" element={<Navigate to="login" replace/>}/>
+      {/*ruta publica cualquiera  puede entrar a /login*/}
+      <Route path="/login" element={<LoginPage />}/>
+        {/** cualquier otra url que no coincida  */}
+        <Route path="*" element={<NotFoundPage/>}/>
+      </Routes>
+  )
+}
+
+export default App
